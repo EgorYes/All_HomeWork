@@ -16,7 +16,7 @@ union specifications
 	char vid;
 };
 
-void secret(string *an, vector<char> *sim)
+void secret(string* an, vector<char>* sim)
 {
 	int SIZE = an->size();
 	for (int i = 0; i < SIZE; ++i)
@@ -53,12 +53,12 @@ int main() {
 				cout << "Symbol:" << '\t' << "Number:" << '\t' << "Number from the range(-127, +127): " << endl;
 
 				for (int i = 0; i < sim.size(); i++)
-				{					
+				{
 					temp = static_cast<int>(sim[i]);
 
 					if (temp < 0)
 					{
-						temp = 127 - static_cast<int>(sim[i]);
+						temp = 127 + (129 + static_cast<int>(sim[i]));
 					}
 
 					cout << sim[i] << '\t' << temp << '\t' << static_cast<int>(sim[i]) << endl;
