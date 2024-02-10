@@ -1,35 +1,77 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+#include <vector>
 
 using namespace std;
-string an;
 
-struct specifications
+string an;
+int temp;
+vector<char> sim;
+int temp3;
+
+union specifications
 {
-	int N;
+	int n;
 	char vid;
 };
 
-specifications symbol;
-
+void secret(string *an, vector<char> *sim)
+{
+	int SIZE = an->size();
+	for (int i = 0; i < SIZE; ++i)
+	{
+		sim->push_back((*an)[i]);
+	}
+}
 
 int main() {
 	srand(time(0));
 
 	while (true)
-	{		
-		symbol.N = rand() % 255;
+	{
+		specifications symbol = { rand() % 255 };
 
-		symbol.vid = symbol.N;
+		cout << "Symbol:" << '\t' << "Number:" << '\t' << "From the range(-127, +127): " << endl;
 
-		cout << "Congratulations! You got an element: " << symbol.vid << endl;
+		cout << symbol.vid << '\t' << symbol.n << '\t' << static_cast<int>(symbol.vid) << endl;
 
-		cout << "His number: " << symbol.N << endl;
+		while (true)
+		{
+			getline(cin, an);
 
-		cout << "Press 'Enter' to repeat the code execution" << endl;
+			const char* q = an.data();
 
-		getline(cin, an);
+			temp = static_cast<int>(*q);
+
+			if (temp != 0)
+			{
+				sim.clear();
+
+				secret(&an, &sim);
+
+				cout << "Symbol:" << '\t' << "Number:" << '\t' << "Number from the range(-127, +127): " << endl;
+
+				for (int i = 0; i < sim.size(); i++)
+				{					
+					temp = static_cast<int>(sim[i]);
+
+					if (temp < 0)
+					{
+						temp = 127 - static_cast<int>(sim[i]);
+					}
+
+					cout << sim[i] << '\t' << temp << '\t' << static_cast<int>(sim[i]) << endl;
+				}
+				cout << "Press 'Enter' to repeat the code execution, or write any characters to find out about them:" << endl;
+			}
+			else
+			{
+				break;
+			}
+
+		}
+
 	}
 
 	return 0;
