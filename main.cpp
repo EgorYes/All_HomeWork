@@ -5,23 +5,22 @@
 
 using namespace std;
 
-string an;
+string input;
 int temp;
-vector<char> sim;
-int temp3;
+vector<char> Vect;
 
-union specifications
+union specifications //union позволяет нам заполнить все показатели одни и тем же числом
 {
-	int n;
+	short n;
 	char vid;
 };
 
-void secret(string* an, vector<char>* sim)
+void secret(string* input, vector<char>* Vect) // Заполняем вектор тем, что ввёл пользователь
 {
-	int SIZE = an->size();
+	int SIZE = input->size();
 	for (int i = 0; i < SIZE; ++i)
 	{
-		sim->push_back((*an)[i]);
+		Vect->push_back((*input)[i]);
 	}
 }
 
@@ -30,48 +29,38 @@ int main() {
 
 	while (true)
 	{
-		specifications symbol = { rand() % 255 };
+		cout << "Press 'Enter' to repeat the code execution or write any characters to find out about them:" << endl; /*Просим пользователя нажать Enter, чтобы программа сама написала свойства рандомного символо,
+													                      или пользователь может сам написать символы и уже их программа расшифрует */
+		getline(cin, input); //Полуечаем ответ от пользователя
 
-		cout << "Symbol:" << '\t' << "Number:" << '\t' << "From the range(-127, +127): " << endl;
-
-		cout << symbol.vid << '\t' << symbol.n << '\t' << static_cast<int>(symbol.vid) << endl;
-
-		while (true)
+		if (input.size() == 0)
 		{
-			getline(cin, an);
+			specifications s = { rand() % 255 };
 
-			const char* q = an.data();
+			cout << "Symbol:" << '\t' << "Number:" << '\t' << "Number from the range(-127, +127): " << endl;
 
-			temp = static_cast<int>(*q);
-
-			if (temp != 0)
-			{
-				sim.clear();
-
-				secret(&an, &sim);
-
-				cout << "Symbol:" << '\t' << "Number:" << '\t' << "Number from the range(-127, +127): " << endl;
-
-				for (int i = 0; i < sim.size(); i++)
-				{
-					temp = static_cast<int>(sim[i]);
-
-					if (temp < 0)
-					{
-						temp = 127 + (129 + static_cast<int>(sim[i]));
-					}
-
-					cout << sim[i] << '\t' << temp << '\t' << static_cast<int>(sim[i]) << endl;
-				}
-				cout << "Press 'Enter' to repeat the code execution, or write any characters to find out about them:" << endl;
-			}
-			else
-			{
-				break;
-			}
-
+			cout << s.vid << '\t' << s.n << '\t' << static_cast<int>(s.vid) << endl;
 		}
+		else
+		{
+			Vect.clear();
 
+			secret(&input, &Vect);
+
+			cout << "Symbol:" << '\t' << "Number:" << '\t' << "Number from the range(-127, +127): " << endl;
+
+			for (int i = 0; i < Vect.size(); i++) // выводим всё, что нашли
+			{
+				temp = static_cast<int>(Vect[i]);
+
+				if (static_cast<int>(Vect[i]) < 0)
+				{
+					temp = 127 + (129 + static_cast<int>(Vect[i]));
+				}
+
+				cout << Vect[i] << '\t' << temp << '\t' << static_cast<int>(Vect[i]) << endl;
+			}
+		}
 	}
 
 	return 0;
