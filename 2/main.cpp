@@ -104,7 +104,7 @@ int main()
 
 	int* p_Arra = Arra; //Создаём указатель на массив
 
-	cout << "We display one of the array elements on the screen using a pointer: " << '\n' << p_Arra[6] << endl;
+	cout << "We display one of the array elements on the screen using a pointer: " << '\n' << p_Arra[0] << endl;
 
 	cout << "We display the entire array on the screen :" << endl;
 
