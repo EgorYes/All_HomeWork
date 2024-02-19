@@ -48,13 +48,13 @@ void max(int* Arra)
 
 void min(int* Arra)
 {
-	int min = Arra[0], max = Arra[0];
- cout << "From less to more: " << endl;
+int min = Arra[0], max = Arra[0];
+cout << "From less to more: " << endl;
 
- int Temp[SIZE];
+int Temp[SIZE];
         
- for(int q = 0; q<SIZE;q++)
- {
+for(int q = 0; q<SIZE;q++)
+{
      Temp[q] = Arra[q];//собираем новый массив на основе старого
 
          if(max < Temp[q])
@@ -62,7 +62,7 @@ void min(int* Arra)
 
          if(min > Temp[q])
              min=Temp[q];// находим минимум новой матрицы
- }
+}
         
      for(int i = 0;i < SIZE; i++)
      {
