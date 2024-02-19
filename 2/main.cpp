@@ -99,7 +99,7 @@ int main()
 	int Arra[SIZE]; //Создаём массив
 
 	for (int i = 0; i < SIZE; i++) //Заполняем его
-		Arra[i] = (rand() % 10) + 1;
+		Arra[i] = (rand() % 20) + 1;
 
 
 	int* p_Arra = Arra; //Создаём указатель на массив
